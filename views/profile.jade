@@ -1,0 +1,30 @@
+extends ./layouts/base.jade
+
+append head
+  title Geo-Dashboard
+  style.
+    html, body {
+      width: 100%;
+      height: 100%;
+    }
+
+block header
+  +header('Profile')
+
+block content
+  div.container
+    div.row
+      div.col-sm-12
+        div.well
+          h3
+            span.fa.fa-user
+            |  Local
+          p
+            strong id
+            | : #{user.id}
+            br
+            strong email
+            | : #{user.email}
+            br
+            strong password
+            | : #{user.password}

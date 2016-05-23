@@ -1,0 +1,118 @@
+extends ./layouts/base.jade
+
+append head
+  title WANTit
+  style.
+    a:link, a:visited, a:hover, a:active {
+      text-decoration: none;
+    }
+    nav {
+      display: flex;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background-color: rgba(234, 123, 103, 0); /* #ea7b67 */
+      padding: 15px;
+      transition: background-color 0.5s ease-in-out;
+      z-index: 10;
+    }
+    .items {
+      margin-left: auto;
+    }
+    .item {
+      margin-left: 10px;
+      margin-right: 10px;
+      color: white;
+      font-size: 14px;
+      text-transform: uppercase;
+    }
+    section {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #ea7b67;
+      z-index: 1;
+    }
+    .overlay {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: DimGray;
+      opacity: 0.6;
+      z-index: 1 !important;
+    }
+    .hero {
+      background: #ea7b67 url("img/photo1_optimized.jpg") no-repeat fixed center;
+      background-size: cover;
+      color: white;
+    }
+    .hero * {
+      z-index: 2;
+    }
+    .hero h1 {
+      font-size: 44px;
+    }
+    .hero p {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      text-align: center;
+      transform: translate(-50%, 0)
+    }
+    .how-it-works {
+      flex-direction: row;
+      flex-wrap: wrap;
+      background-color: white;
+    }
+    .how-it-works h2 {
+      width: 100%;
+      text-align: center;
+    }
+    .how-it-works div {
+      width: 50%;
+    }
+
+
+block content
+  nav
+    div.logo
+      a(href="/")
+        img(src="img/logo.png" height="30px")
+    div.items
+      a(href="#").item FAQ
+      a(href="#").item Businesses
+  section.hero
+    h1 Anything you want. Delivered in minutes.
+    h3 WANTit is an iPhone app that connects you to experts to help find you what you want, when you want.
+    p Scroll to learn more
+    div.overlay
+  section.how-it-works
+    h2 How it works
+    div.video
+    div.steps
+      p Labore in nostrud labore cillum eu commodo et magna ullamco.
+      p Adipisicing veniam ipsum exercitation esse laborum ad enim do laboris quis qui consectetur id.
+      p Ipsum sunt in officia eu.
+  section.download-app
+  section.join-wantit
+  footer
+
+block scripts
+  script(src="libs/jquery/jquery-2.2.0.min.js")
+  script.
+    // TODO:
+    // do this with a class change
+    $(window).on('scroll', () => {
+      const position = $(document).scrollTop();
+      if (position === 0) {
+        $('nav').css('background-color', 'rgba(234, 123, 103, 0)');
+      } else {
+        $('nav').css('background-color', 'rgba(234, 123, 103, 1)');
+      }
+    })

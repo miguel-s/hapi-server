@@ -1,0 +1,147 @@
+extends ./layouts/base.jade
+
+append head
+  link(rel="stylesheet" href="libs/leaflet/leaflet.css")
+  link(rel="stylesheet" href="libs/leaflet.markercluster/MarkerCluster.css")
+  link(rel="stylesheet" href="libs/leaflet.markercluster/MarkerCluster.Default.css")
+  title Map
+  style.
+    html, body {
+      width: 100%;
+      height: 100%;
+    }
+    .map-container, .map {
+      height: 100%;
+    }
+    .header, .controls {
+      left: 0;
+      right: 0;
+      position: absolute;
+      z-index: 1000;
+      background-color: rgba(255, 255, 255, 0.7);
+    }
+    .page-header {
+      margin-bottom: 0;
+    }
+    #map {
+      width: 100%;
+      height: 100%;
+    }
+    .leaflet-top {
+      margin-top: 160px;
+    }
+    .info {
+      padding: 6px 8px;
+      font: 14px/16px Arial, Helvetica, sans-serif;
+      background: white;
+      background: rgba(255,255,255,0.8);
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      border-radius: 5px;
+    }
+    .info h4 {
+      margin: 0 0 5px;
+      color: #777;
+    }
+    .legend {
+      line-height: 18px;
+      color: #555;
+    }
+    .legend i {
+      width: 18px;
+      height: 18px;
+      float: left;
+      margin-right: 8px;
+      opacity: 0.7;
+    }
+    .controls {
+      top: 129px;
+    }
+    .dropdown {
+      display: inline-block;
+    }
+    .dropdown-menu {
+      max-height: 200px;
+      overflow-y: auto;
+    }
+    .dropdown .color-container {
+      border: 1px solid WhiteSmoke;
+      height: 20px;
+    }
+    .dropdown i {
+      display: inline-block;
+      width: 20%;
+      height: 100%;
+      opacity: 0.7;
+    }
+
+block header
+  +header('Map')
+
+block content
+  div.container-fluid.controls
+    div.container
+      div.row
+        div.dropdown.granularity
+          button.btn.btn-default.btn-sm.dropdown-toggle(type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true")
+            | Granularity #{space}
+            span.caret
+          ul.dropdown-menu(aria-labelledby="dropdownMenu1")
+            li.no
+              a(href="#") Empty
+            li.ca.disabled
+              a(href="#") CCAA
+            li.pv.disabled
+              a(href="#") Provincias
+            li.nh.disabled
+              a(href="#") Barrios
+            li.cs.disabled
+              a(href="#") Sección Censal
+        div.dropdown.variables
+          button.btn.btn-default.btn-sm.dropdown-toggle.disabled(type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true")
+            | Variable #{space}
+            span.caret
+          ul.dropdown-menu(aria-labelledby="dropdownMenu1")
+            li.no
+              a(href="#") Empty
+            li.po
+              a(href="#") Population
+            li.pm
+              a(href="#") % Men
+            li.pf
+              a(href="#") % Foreigners
+        div.dropdown.types
+          button.btn.btn-default.btn-sm.dropdown-toggle.disabled(type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true")
+            | Type #{space}
+            span.caret
+          ul.dropdown-menu(aria-labelledby="dropdownMenu1")
+            li.sq
+                a(href="#") Sequential
+            li.dv
+                a(href="#") Diverging
+            li.ql
+                a(href="#") Qualitative
+        div.dropdown.colors
+          button.btn.btn-default.btn-sm.dropdown-toggle.disabled(type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true")
+            | Color #{space}
+            span.caret
+          ul.dropdown-menu(aria-labelledby="dropdownMenu1")
+        div.dropdown.classes
+          button.btn.btn-default.btn-sm.dropdown-toggle.disabled(type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true")
+            | Classes #{space}
+            span.caret
+          ul.dropdown-menu(aria-labelledby="dropdownMenu1")
+            each num in [3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+              li.disabled
+                a(href="#")= num
+  div.container-fluid.map-container
+    div.row.map
+      div(id="map")
+
+block scripts
+  script(src="libs/jquery/jquery-2.2.0.min.js")
+  script(src="libs/bootstrap/js/bootstrap.min.js")
+  script(src="libs/colorbrewer/colorbrewer.js")
+  script(src="libs/leaflet/leaflet.js")
+  script(src="libs/leaflet.markercluster/leaflet.markercluster.min.js")
+  script(src="libs/d3/topojson.v1.min.js")
+  script(src="js/map.js")
