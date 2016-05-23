@@ -38,7 +38,7 @@ internals.after = (server, next) => {
       config: {
         description: 'Returns a login form',
         auth: { strategy: 'session', mode: 'try' },
-        // plugins: { 'hapi-auth-cookie': { redirectTo: false } },
+        plugins: { 'hapi-auth-cookie': { redirectTo: false } },
         handler: {
           view: {
             template: 'login',
@@ -52,7 +52,7 @@ internals.after = (server, next) => {
       config: {
         description: 'Returns a login form',
         auth: { strategy: 'session', mode: 'try' },
-        // plugins: { 'hapi-auth-cookie': { redirectTo: false } },
+        plugins: { 'hapi-auth-cookie': { redirectTo: false } },
         validate: {
           payload: require('./models/user.js'),
           failAction: require('./controllers/login.js'),
@@ -78,7 +78,7 @@ internals.after = (server, next) => {
       config: {
         description: 'Returns a sinup form',
         auth: { strategy: 'session', mode: 'try' },
-        // plugins: { 'hapi-auth-cookie': { redirectTo: false } },
+        plugins: { 'hapi-auth-cookie': { redirectTo: false } },
         handler: {
           view: {
             template: 'signup',
