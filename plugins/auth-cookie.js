@@ -16,7 +16,7 @@ exports.options = internals.options = {
   password: 'y00y-00m3-m4k1-z00m-y00y-00m3-m4k1-z00m-',
   cookie: 'sid',
   redirectTo: '/login',
-  isSecure: true,
+  isSecure: false, // // set 'false' for http! set 'true' for https!
 };
 
 internals.after = (server, next) => {
