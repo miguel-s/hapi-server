@@ -5,12 +5,10 @@
 module.exports = {
   connections: [
     {
-      // host: process.env.HOST || 'localhost',
-      port: process.env.PORT || 8000,
+      port: process.env.PORT,
       labels: ['web'],
     },
     // {
-    //   host: process.env.HOST || 'localhost',
     //   port: process.env.PORT || 8001,
     //   labels: ['web-tls'],
     //   tls: config.tls,
