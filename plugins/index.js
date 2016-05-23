@@ -22,7 +22,6 @@ internals.after = (server, next) => {
       config: {
         description: 'Returns the index page',
         auth: { strategy: 'session', mode: 'try' },
-        // plugins: { 'hapi-auth-cookie': { redirectTo: false } },
         handler: {
           view: {
             template: 'index',
@@ -107,7 +106,7 @@ internals.after = (server, next) => {
       path: '/dashboard',
       config: {
         description: 'Returns the dashboard page',
-        // auth: { strategy: 'session', mode: 'try' },
+        auth: { strategy: 'session', mode: 'try' },
         handler: {
           view: {
             template: 'dashboard',
@@ -122,7 +121,7 @@ internals.after = (server, next) => {
       path: '/profile',
       config: {
         description: 'Returns the profile page',
-        // auth: { strategy: 'session', mode: 'try' },
+        auth: { strategy: 'session', mode: 'try' },
         handler: require('./controllers/profile.js'),
       },
     },
@@ -133,7 +132,7 @@ internals.after = (server, next) => {
       path: '/admin',
       config: {
         description: 'Returns the admin control panel',
-        // auth: { strategy: 'session', mode: 'try', scope: ['admin'] },
+        auth: { strategy: 'session', mode: 'try', scope: ['admin'] },
         handler: {
           view: {
             template: 'admin',
@@ -149,7 +148,6 @@ internals.after = (server, next) => {
       config: {
         description: 'Returns the cookies policy page',
         auth: { strategy: 'session', mode: 'try' },
-        // plugins: { 'hapi-auth-cookie': { redirectTo: false } },
         handler: {
           view: {
             template: 'cookies',

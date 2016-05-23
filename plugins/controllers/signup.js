@@ -6,7 +6,7 @@ module.exports = function handler(request, reply, source, error) {
   let account = {};
 
   if (request.auth.isAuthenticated) {
-    return reply.redirect('/dashboard');
+    return reply.redirect('/admin');
   }
 
   // const key = error.data.details[0].path;
@@ -54,7 +54,7 @@ module.exports = function handler(request, reply, source, error) {
           request.server.app.cache.set(sid, { account }, 0, (err) => {
             if (err) return reply(err);
             request.cookieAuth.set({ sid });
-            return reply.redirect('/dashboard');
+            return reply.redirect('/admin');
           });
         }
       );

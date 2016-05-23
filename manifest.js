@@ -5,7 +5,8 @@
 module.exports = {
   connections: [
     {
-      port: process.env.PORT,
+      host: 'localhost',
+      port: process.env.PORT || 8000,
       labels: ['web'],
     },
     // {

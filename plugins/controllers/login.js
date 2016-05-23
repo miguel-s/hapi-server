@@ -6,7 +6,7 @@ module.exports = function handler(request, reply) {
   let account = {};
 
   if (request.auth.isAuthenticated) {
-    return reply.redirect('/dashboard');
+    return reply.redirect('/admin');
   }
 
   if (!request.payload.email || !request.payload.password) {
@@ -30,7 +30,7 @@ module.exports = function handler(request, reply) {
       request.server.app.cache.set(sid, { account }, 0, (err) => {
         if (err) return reply(err);
         request.cookieAuth.set({ sid });
-        return reply.redirect('/dashboard');
+        return reply.redirect('/admin');
       });
     }
   );
