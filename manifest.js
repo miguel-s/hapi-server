@@ -75,12 +75,12 @@ module.exports = {
         select: ['web'],
       },
     },
-    // {
-    //   plugin: './plugins/tls',
-    //   options: {
-    //     select: ['web'],
-    //   },
-    // },
+    {
+      plugin: './plugins/tls',
+      options: {
+        select: ['web'],
+      },
+    },
     {
       plugin: './plugins/lout',
       options: {
