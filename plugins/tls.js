@@ -9,7 +9,7 @@ exports.register = (server, options, next) => {
   // TLS everything
   web.ext('onRequest', (request, reply) => {
     if (request.headers['x-forwarded-proto'] === 'http') {
-      return reply().redirect(`https://${request.headers.host}${request.url.path}`).permament();
+      return reply.redirect(`https://${request.headers.host}${request.url.path}`).permanent();
     }
     return reply.continue();
   });
