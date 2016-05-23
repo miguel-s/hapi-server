@@ -22,8 +22,12 @@ internals.after = (server, next) => {
       config: {
         description: 'Returns the index page',
         auth: { strategy: 'session', mode: 'try' },
-        plugins: { 'hapi-auth-cookie': { redirectTo: false } },
-        handler: require('./controllers/index.js'),
+        // plugins: { 'hapi-auth-cookie': { redirectTo: false } },
+        handler: {
+          view: {
+            template: 'index',
+          },
+        },
       },
     },
 
@@ -34,7 +38,7 @@ internals.after = (server, next) => {
       config: {
         description: 'Returns a login form',
         auth: { strategy: 'session', mode: 'try' },
-        plugins: { 'hapi-auth-cookie': { redirectTo: false } },
+        // plugins: { 'hapi-auth-cookie': { redirectTo: false } },
         handler: {
           view: {
             template: 'login',
@@ -48,7 +52,7 @@ internals.after = (server, next) => {
       config: {
         description: 'Returns a login form',
         auth: { strategy: 'session', mode: 'try' },
-        plugins: { 'hapi-auth-cookie': { redirectTo: false } },
+        // plugins: { 'hapi-auth-cookie': { redirectTo: false } },
         validate: {
           payload: require('./models/user.js'),
           failAction: require('./controllers/login.js'),
@@ -74,7 +78,7 @@ internals.after = (server, next) => {
       config: {
         description: 'Returns a sinup form',
         auth: { strategy: 'session', mode: 'try' },
-        plugins: { 'hapi-auth-cookie': { redirectTo: false } },
+        // plugins: { 'hapi-auth-cookie': { redirectTo: false } },
         handler: {
           view: {
             template: 'signup',
@@ -103,7 +107,7 @@ internals.after = (server, next) => {
       path: '/dashboard',
       config: {
         description: 'Returns the dashboard page',
-        auth: { strategy: 'session', mode: 'try' },
+        // auth: { strategy: 'session', mode: 'try' },
         handler: {
           view: {
             template: 'dashboard',
@@ -118,7 +122,7 @@ internals.after = (server, next) => {
       path: '/profile',
       config: {
         description: 'Returns the profile page',
-        auth: { strategy: 'session', mode: 'try' },
+        // auth: { strategy: 'session', mode: 'try' },
         handler: require('./controllers/profile.js'),
       },
     },
@@ -129,7 +133,7 @@ internals.after = (server, next) => {
       path: '/admin',
       config: {
         description: 'Returns the admin control panel',
-        auth: { strategy: 'session', mode: 'try', scope: ['admin'] },
+        // auth: { strategy: 'session', mode: 'try', scope: ['admin'] },
         handler: {
           view: {
             template: 'admin',
@@ -138,14 +142,14 @@ internals.after = (server, next) => {
       },
     },
 
-    // Cookeis route
+    // Cookies route
     {
       method: 'GET',
       path: '/cookies',
       config: {
         description: 'Returns the cookies policy page',
         auth: { strategy: 'session', mode: 'try' },
-        plugins: { 'hapi-auth-cookie': { redirectTo: false } },
+        // plugins: { 'hapi-auth-cookie': { redirectTo: false } },
         handler: {
           view: {
             template: 'cookies',
