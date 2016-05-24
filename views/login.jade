@@ -3,30 +3,24 @@ extends ./layouts/base.jade
 append head
   title WANTit
   style.
-    html, body {
-      width: 100%;
-      height: 100%;
-    }
-    body {
-      padding-top: 80px;
+    .row {
+      height: 100vh;
     }
 
 block content
-  div.container
-    div.col-sm-6.col-sm-offset-3
+  div.row.align-center.align-middle
+    div.small-10.large-6.column
       h1
         span.fa.fa-sign-in
         |  Login
       if message
-        div.alert.alert-danger= message
+        div.callout.alert= message
       form(action="/login" method="post")
-        div.form-group
-          label Email
-          input.form-control(type="text" name="email" placeholder='Email' value=email)
-        div.form-group
-          label Password
-          input.form-control(type="password" name="password" placeholder='Password')
-        button.btn.btn-warning.btn-lg(type="submit") Login
+        label Email
+          input(type="text" name="email" placeholder='Email' value=email)
+        label Password
+          input(type="password" name="password" placeholder='Password')
+        button.button(type="submit") Login
       hr
       p Need an account?
         | #{space}
