@@ -5,7 +5,7 @@
 module.exports = {
   connections: [
     {
-      port: process.env.PORT,
+      port: Number(process.env.PORT) || 8000,
       labels: ['web'],
     },
     // {
@@ -39,12 +39,12 @@ module.exports = {
         select: ['web'],
       },
     },
-    {
-      plugin: './plugins/jade',
-      options: {
-        select: ['web'],
-      },
-    },
+    // {
+    //   plugin: './plugins/jade',
+    //   options: {
+    //     select: ['web'],
+    //   },
+    // },
     {
       plugin: './plugins/database',
       options: {
@@ -63,12 +63,12 @@ module.exports = {
         select: ['web'],
       },
     },
-    {
-      plugin: './plugins/index',
-      options: {
-        select: ['web'],
-      },
-    },
+    // {
+    //   plugin: './plugins/index',
+    //   options: {
+    //     select: ['web'],
+    //   },
+    // },
     {
       plugin: './plugins/errors',
       options: {
