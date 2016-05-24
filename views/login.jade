@@ -2,13 +2,9 @@ extends ./layouts/base.jade
 
 append head
   title WANTit
-  style.
-    .row {
-      height: 100vh;
-    }
 
 block content
-  div.row.align-center.align-middle
+  div(style="height: 100vh").row.align-center.align-middle
     div.small-10.large-6.column
       h1
         span.fa.fa-sign-in
@@ -20,7 +16,7 @@ block content
           input(type="text" name="email" placeholder='Email' value=email)
         label Password
           input(type="password" name="password" placeholder='Password')
-        button.button(type="submit") Login
+        button(type="submit").button Login
       hr
       p Need an account?
         | #{space}
