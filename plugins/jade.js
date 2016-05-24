@@ -15,7 +15,8 @@ exports.options = internals.options = {
   engines: {
     jade: {
       module: require('jade'),
-      isCached: true, // set 'false' for development! set 'true' for production!
+      // set 'false' for development! set 'true' for production!
+      isCached: true, // (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging'),
     },
   },
   relativeTo: __dirname,
