@@ -1,15 +1,12 @@
 mixin header(name)
-  - var items = ['Dashboard', 'Map', 'Server', 'Profile', 'Logout']
-  div.container-fluid.header
-    div.container
-      div.page-header.text-center
-        h1
-          span.fa.fa-map
-          |  #{name}
-        each item, index in items
-          if item === name
-            div.btn.btn-default.btn-sm.disabled= item
-          else
-            a.btn.btn-default.btn-sm(href="/#{item.toLowerCase()}")= item
-          if index !== items.length - 1
-            | &nbsp;
+  - var items = ['Dashboard', 'Profile', 'Admin', 'Logout']
+  div.row.column
+    div(id="main-menu").top-bar
+      div.top-bar-left
+        ul.dropdown.menu
+          li.menu-text WANTit
+      div.top-bar-right
+        ul.menu
+          each item, index in items
+            li
+              a(href="/#{item.toLowerCase()}")= item
