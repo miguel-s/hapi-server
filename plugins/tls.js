@@ -14,8 +14,8 @@ exports.register = (server, options, next) => {
       }
       return reply.continue();
     });
-    return next();
   }
+  return next();
 };
 
 exports.register.attributes = {
