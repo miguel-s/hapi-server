@@ -7,7 +7,7 @@ module.exports = function handler(request, reply) {
   let account = {};
 
   if (request.auth.isAuthenticated) {
-    return reply.redirect('/admin');
+    return reply.redirect('/');
   }
 
   if (!request.payload.email || !request.payload.password) {
@@ -47,10 +47,10 @@ module.exports = function handler(request, reply) {
           request.cookieAuth.set({ sid });
 
           if (account.scope.indexOf('admin') !== -1) {
-            return reply.redirect('/admin');
+            return reply.redirect('/');
           }
 
-          return reply.redirect('/profile');
+          return reply.redirect('/');
         });
       });
     }
