@@ -23,6 +23,21 @@ exports.register = (server, options, next) => {
     return reply.continue();
   });
 
+  // Handle Forbidden
+  webTls.ext('onPreResponse', (request, reply) => {
+    if (request.response.isBoom) {
+      // statusCode 404 Not Found
+      if (request.response.output.statusCode === 403) {
+        return reply.view('error', {
+          statusCode: 404,
+          error: 'Not Found',
+        }).code(404);
+      }
+    }
+
+    return reply.continue();
+  });
+
   // Handle Internal Server Error
   webTls.ext('onPreResponse', (request, reply) => {
     if (request.response.isBoom) {

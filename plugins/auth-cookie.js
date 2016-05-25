@@ -20,8 +20,6 @@ exports.options = internals.options = {
 };
 
 internals.after = (server, next) => {
-  // note! set server.app.cache which is catbox.cache.
-  // see server.cache docs. read about catbox policy.
   const cache = server.cache(internals.options.cacheOptions);
   server.app.cache = cache;
 
