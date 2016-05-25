@@ -3,116 +3,278 @@ extends ./layouts/base.jade
 append head
   title WANTit
   style.
-    a:link, a:visited, a:hover, a:active {
-      text-decoration: none;
-    }
-    nav {
-      display: flex;
-      align-items: center;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      background-color: rgba(234, 123, 103, 0); /* #ea7b67 */
-      padding: 15px;
-      transition: background-color 0.5s ease-in-out;
-      z-index: 10;
-    }
-    .items {
-      margin-left: auto;
-    }
-    .item {
-      margin-left: 10px;
-      margin-right: 10px;
-      color: white;
-      font-size: 14px;
-      text-transform: uppercase;
-    }
     section {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background-color: #ea7b67;
-      z-index: 1;
+      position: relative;
+      padding-top: 2rem;
+      padding-bottom: 2rem;
     }
-    .overlay {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background-color: DimGray;
-      opacity: 0.6;
-      z-index: 1 !important;
+    .column {
+      margin-top: 0.5rem;
+      margin-bottom: 0.5rem;
     }
     .hero {
-      background: #ea7b67 url("img/photo1_optimized.jpg") no-repeat fixed center;
+      position: relative;
+      background-color: white;
+      background-image: url("img/photo1_optimized.jpg");
       background-size: cover;
       color: white;
+      height: 99vh;
     }
     .hero * {
-      z-index: 2;
+      z-index: 1;
     }
-    .hero h1 {
-      font-size: 44px;
+    .hero h1, .hero h5 {
+      margin-top: 4rem;
     }
-    .hero p {
+    .hero .scroll {
+      cursor: pointer;
       position: absolute;
       bottom: 0;
       left: 50%;
-      text-align: center;
       transform: translate(-50%, 0)
     }
+    .hero .overlay {
+      background-color: DimGray;
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      opacity: 0.6;
+      z-index: 0;
+    }
     .how-it-works {
-      flex-direction: row;
-      flex-wrap: wrap;
+      position: relative;
       background-color: white;
+      color: rgba(38, 38, 38, 0.8);
     }
-    .how-it-works h2 {
-      width: 100%;
-      text-align: center;
+    .how-it-works p {
+      color: rgba(38, 38, 38, 0.6);
     }
-    .how-it-works div {
-      width: 50%;
+    .how-it-works .row.title {
+      height: 33.33%;
+    }
+    .how-it-works .video {
+      background-color: #ea7b67;
+      opacity: 0.7;
+      position: relative;
+      height: 0x;
+      width: 80%;
+      padding-top: 60%;
+      margin: 0 auto;
+    }
+    .how-it-works .video .play-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-size: 8rem;
+    }
+    .how-it-works .row.content {
+      height: 66.67%;
+    }
+    .download-app {
+      position: relative;
+      background-color: #67eab3;
+      color: rgba(38, 38, 38, 0.9);
+    }
+    .download-app h3 {
+      margin-bottom: 4rem;
+    }
+    .download-app h5 {
+      color: rgba(38, 38, 38, 0.7);
+      margin-bottom: 1rem;
+    }
+    .download-app .row {
+      height: 100%;
+    }
+    .download-app .devices {
+      position: relative;
+      height: 500px;
+      transform: translate(0, -15%);
+    }
+    .download-app .device-android {
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: url("img/android_wantit.png") no-repeat;
+      background-size: contain;
+      height: 500px;
+      width: 500px;
+    }
+    .download-app .device-ios {
+      position: absolute;
+      top: 50px;
+      left: 150px;
+      background: url("img/ios_wantit.png") no-repeat;
+      background-size: contain;
+      height: 500px;
+      width: 500px;
+    }
+    .join-wantit {
+      position: relative;
+      background-color: white;
+      color: rgba(38, 38, 38, 0.8);
+    }
+    .join-wantit h3 {
+      margin-bottom: 2rem;
+    }
+    .join-wantit p {
+      color: rgba(38, 38, 38, 0.6);
+      margin-bottom: 2rem;
+    }
+    .join-wantit button {
+      text-transform: uppercase;
+    }
+    footer {
+      position: relative;
+      background-color: #ea7b67;
+      color: white;
+      padding-top: 2rem;
+      padding-bottom: 0.5rem;
+    }
+    footer a {
+      display: block;
+      color: white;
+      margin-top: 1rem;
+    }
+    footer .media {
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+    }
+    footer .media-item {
+      position: relative;
+      display: inline-block;
+      background-color: white;
+      height: 3rem;
+      width: 3rem;
+      margin: 1rem 0.25rem 1rem 0.25rem;
+      border-radius: 50%;
+    }
+    footer .media span {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #ea7b67;
+      font-size: 1.5rem;
+    }
+    footer .copy {
+      font-size: 0.75rem;
+    }
+    footer .copy a {
+      display: inline-block;
     }
 
+block header
+  +header('fixed transparent transition')
 
 block content
-  nav
-    div.logo
-      a(href="/")
-        img(src="img/logo.png" height="30px")
-    div.items
-      a(href="#").item FAQ
-      a(href="#").item Businesses
   section.hero
-    h1 Anything you want. Delivered in minutes.
-    h3 WANTit is an iPhone app that connects you to experts to help find you what you want, when you want.
-    p Scroll to learn more
     div.overlay
+    div.row.align-center.text-center
+      div.small-8.column.align-self-top
+        h1 Anything you want.<br>Delivered directly to you.
+    div.row.align-center.text-center
+      div.small-6.column.align-self-bottom
+        h5 WANTit is an iPhone app that connects you to experts to help find you what you want, when you want.
+    div.scroll.text-center
+      span Scroll to learn more
+      br
+      span.fa.fa-chevron-down
   section.how-it-works
-    h2 How it works
-    div.video
-    div.steps
-      p Labore in nostrud labore cillum eu commodo et magna ullamco.
-      p Adipisicing veniam ipsum exercitation esse laborum ad enim do laboris quis qui consectetur id.
-      p Ipsum sunt in officia eu.
-  section.download-app
-  section.join-wantit
+    div.row.title.text-center
+      div.column.align-self-middle
+        h3 How it works
+    div.row.content.align-middle
+      div.small-12.medium-expand.column
+        div.video
+          span.fa.fa-play-circle-o.play-icon
+      div.small-12.medium-expand.column
+        div.steps
+          div.row
+            div.small-1.column
+              span.fa.fa-check
+            div.column
+              h5 Ipsum sunt in officia eu.
+              p Reprehenderit Lorem qui sint do adipisicing duis deserunt irure nostrud reprehenderit aliqua.
+          div.steps
+          div.row
+            div.small-1.column
+              span.fa.fa-check
+            div.column
+              h5 Ipsum sunt in officia eu.
+              p Reprehenderit Lorem qui sint do adipisicing duis deserunt irure nostrud reprehenderit aliqua.
+          div.steps
+          div.row
+            div.small-1.column
+              span.fa.fa-check
+            div.column
+              h5 Ipsum sunt in officia eu.
+              p Reprehenderit Lorem qui sint do adipisicing duis deserunt irure nostrud reprehenderit aliqua.
+  section.download-app.text-center
+    div.row.text-center
+      div.small-12.medium-expand.column.align-self-middle
+        div.devices
+          div.device-android
+          div.device-ios
+      div.small-12.medium-expand.column.align-self-middle
+        h3 Download WANTit and start enjoying a brand new shopping experience.
+        h5 First delivery free!
+        a(href="#")
+          img(src="img/badge_appstore.svg" height="72px" width="200px")
+        a(href="#")
+          img(src="img/badge_googleplay.png" height="72px" width="200px")
+  section.join-wantit.text-center
+    div.row.text-center
+      div.small-12.medium-expand.column.align-self-middle
+        h3 Do you want to join WANTit Business?
+        p Tempor ad nostrud exercitation ex ex sint minim proident nulla ullamco tempor incididunt aliquip. Magna commodo ex dolore pariatur ut esse et quis officia occaecat minim. Tempor aliqua ipsum sunt pariatur in est proident laborum do proident culpa sunt officia ullamco. Minim fugiat proident adipisicing eiusmod reprehenderit anim excepteur adipisicing. Nisi incididunt eu est et ad in veniam.
+        button.button.large Become a WANTit Vendor
   footer
+    div.row.text-center
+      div.column.align-self-top.text-left
+        a(href="#") Businesses
+        a(href="#") About Us
+        a(href="#") Work with us
+      div.column.align-self-bottom
+        div.media
+          div.media-item
+            a(href="#")
+              span.fa.fa-facebook
+          div.media-item
+            a(href="#")
+              span.fa.fa-twitter
+          div.media-item
+            a(href="#")
+              span.fa.fa-instagram
+      div.column.align-self-top.text-right
+        a(href="#") Blog
+        a(href="#") FAQ
+        a(href="#") Contact
+    div.row.column.text-center
+      div.copy.align-self-center
+        span Copyright, 2016.
+        span #{space} | #{space}
+        a(href="#") Terms of service
+        span #{space} | #{space}
+        a(href="#") Privacy policy
 
 block scripts
   script(src="libs/jquery/jquery-2.2.0.min.js")
   script.
-    // TODO:
-    // do this with a class change
-    $(window).on('scroll', () => {
-      const position = $(document).scrollTop();
-      if (position === 0) {
-        $('nav').css('background-color', 'rgba(234, 123, 103, 0)');
-      } else {
-        $('nav').css('background-color', 'rgba(234, 123, 103, 1)');
-      }
-    })
+    $(() => {
+      const topBar = $('.top-bar');
+      $(window).on('scroll', () => {
+        const position = $(document).scrollTop();
+        if (position === 0) {
+          topBar.addClass('transparent');
+        } else {
+          topBar.removeClass('transparent');
+        }
+      });
+      $('.scroll').on('click', () => {
+        $('html, body').animate({scrollTop: $(window).height() - $('.top-bar').height()})
+      });
+    });

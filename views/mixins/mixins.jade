@@ -1,9 +1,10 @@
-mixin header(name)
-  - var items = ['Dashboard', 'Profile', 'Admin', 'Logout']
-  div(id="main-menu").top-bar
+mixin header(classes)
+  - var items = ['Dashboard', 'Profile', 'Logout']
+  div(id="main-menu" class=classes).top-bar
     div.top-bar-left
       ul.dropdown.menu
-        li.menu-text WANTit
+        li
+          a.menu-text(href="/") WANTit
     div.top-bar-right
       ul.menu
         each item, index in items
