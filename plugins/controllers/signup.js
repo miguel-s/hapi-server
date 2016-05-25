@@ -6,6 +6,13 @@ const bcrypt = require('bcryptjs');
 module.exports = function handler(request, reply, source, error) {
   let account = {};
 
+  if (!request.server.app.settings.allowSignup) {
+    return reply.view('signup', {
+      message: 'Signup not allowed',
+      email: request.payload.email,
+    });
+  }
+
   if (request.auth.isAuthenticated) {
     return reply.redirect('/admin');
   }
