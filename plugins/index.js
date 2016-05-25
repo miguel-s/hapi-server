@@ -126,21 +126,6 @@ internals.after = (server, next) => {
       },
     },
 
-    // Admin route
-    {
-      method: 'GET',
-      path: '/admin',
-      config: {
-        description: 'Returns the admin control panel',
-        auth: { strategy: 'session', mode: 'try', scope: ['admin'] },
-        handler: {
-          view: {
-            template: 'admin',
-          },
-        },
-      },
-    },
-
     // Cookies route
     {
       method: 'GET',
@@ -151,6 +136,21 @@ internals.after = (server, next) => {
         handler: {
           view: {
             template: 'cookies',
+          },
+        },
+      },
+    },
+
+    // Admin route
+    {
+      method: 'GET',
+      path: '/admin',
+      config: {
+        description: 'Returns the admin control panel',
+        auth: { strategy: 'session', mode: 'try', scope: ['admin'] },
+        handler: {
+          view: {
+            template: 'admin',
           },
         },
       },

@@ -1,12 +1,11 @@
 mixin header(name)
   - var items = ['Dashboard', 'Profile', 'Admin', 'Logout']
-  div.row.column
-    div(id="main-menu").top-bar
-      div.top-bar-left
-        ul.dropdown.menu
-          li.menu-text WANTit
-      div.top-bar-right
-        ul.menu
-          each item, index in items
-            li
-              a(href="/#{item.toLowerCase()}")= item
+  div(id="main-menu").top-bar
+    div.top-bar-left
+      ul.dropdown.menu
+        li.menu-text WANTit
+    div.top-bar-right
+      ul.menu
+        each item, index in items
+          li
+            a(href="/#{item.toLowerCase()}")= item
