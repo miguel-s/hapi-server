@@ -43,8 +43,14 @@ module.exports = function handler(request, reply) {
         const sid = String(aguid());
         request.server.app.cache.set(sid, { account }, 0, (err) => {
           if (err) return reply(err);
+
           request.cookieAuth.set({ sid });
-          return reply.redirect('/admin');
+
+          if (account.scope.indexOf('admin') !== -1) {
+            return reply.redirect('/admin');
+          }
+
+          return reply.redirect('/profile');
         });
       });
     }
