@@ -15,7 +15,7 @@ exports.register = (server, options, next) => {
       if (request.response.output.statusCode === 404) {
         return reply.view('error', {
           statusCode: request.response.output.statusCode,
-          message: request.response.message,
+          error: request.response.output.payload.error,
         }).code(404);
       }
     }
@@ -28,7 +28,6 @@ exports.register = (server, options, next) => {
     if (request.response.isBoom) {
       // statusCode 500 Internal Server Error
       if (request.response.output.statusCode === 500) {
-        console.log(request.response)
         return reply.view('error', {
           statusCode: request.response.output.statusCode,
           error: request.response.output.payload.error,
