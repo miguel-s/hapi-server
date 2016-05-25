@@ -15,7 +15,7 @@ exports.register.attributes = {
 
 exports.options = internals.options = {
   ops: {
-    interval: 15000,
+    interval: 30000,
   },
   reporters: {
     console: [
