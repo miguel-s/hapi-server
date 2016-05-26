@@ -270,6 +270,7 @@ block scripts
     $(() => {
       const topBar = $('.top-bar');
       $(window).on('scroll', () => {
+        alert('scroll');
         const position = $(window).scrollTop();
         if (position === 0) {
           topBar.addClass('transparent');
@@ -278,9 +279,11 @@ block scripts
         }
       });
       $('.scroll').on('click', () => {
+        alert('click');
         $('body').animate({scrollTop: $(window).height() - $('.top-bar').height()})
       });
       $('.scroll').on('touchstart', (e) => {
+        alert('touchstart');
         $('body').animate({scrollTop: $(window).height() - $('.top-bar').height()})
       });
     });
