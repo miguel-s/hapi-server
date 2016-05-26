@@ -268,7 +268,6 @@ block scripts
   script(src="libs/jquery/jquery-2.2.0.min.js")
   script.
     $(() => {
-      alert('jquery ready')
       const topBar = $('.top-bar');
       $(window).on('scroll', () => {
         const position = $(window).scrollTop();
@@ -281,7 +280,7 @@ block scripts
       $('.scroll').on('click', () => {
         $('body').animate({scrollTop: $(window).height() - $('.top-bar').height()})
       });
-      $('.scroll').on('touchstart', (e) => {
+      $('.scroll').on('touchstart', () => {
         $('body').animate({scrollTop: $(window).height() - $('.top-bar').height()})
       });
     });
