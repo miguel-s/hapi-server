@@ -89,6 +89,9 @@ append head
     .download-app .row {
       height: 100%;
     }
+    .download-app .store-badge {
+      margin: 0.25rem 0.5rem 0.25rem 0.5rem;
+    }
     .download-app .devices {
       position: relative;
       transform: translate(0, -15%);
@@ -223,9 +226,9 @@ block content
         h3 Download WANTit and start enjoying a brand new shopping experience.
         h5 First delivery free!
         a(href="#")
-          img(src="img/badge_appstore.svg" height="72px" width="200px")
+          img(src="img/badge_appstore.svg" height="72px" width="200px").store-badge
         a(href="#")
-          img(src="img/badge_googleplay.png" height="72px" width="200px")
+          img(src="img/badge_googleplay.png" height="72px" width="200px").store-badge
   section.join-wantit.text-center
     div.row.text-center
       div.small-12.medium-expand.column.align-self-middle
@@ -267,7 +270,7 @@ block scripts
     $(() => {
       const topBar = $('.top-bar');
       $(window).on('scroll', () => {
-        const position = $(document).scrollTop();
+        const position = $('body').scrollTop();
         if (position === 0) {
           topBar.addClass('transparent');
         } else {
@@ -275,7 +278,7 @@ block scripts
         }
       });
       $(window).on('touchmove', () => {
-        const position = $(document).scrollTop();
+        const position = $('body').scrollTop();
         if (position === 0) {
           topBar.addClass('transparent');
         } else {
