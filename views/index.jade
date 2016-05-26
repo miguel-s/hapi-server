@@ -269,7 +269,7 @@ block scripts
   script.
     $(() => {
       const topBar = $('.top-bar');
-      $(window).on('scroll', () => {
+      $('body').on('scroll', () => {
         const position = $('body').scrollTop();
         if (position === 0) {
           topBar.addClass('transparent');
@@ -277,7 +277,7 @@ block scripts
           topBar.removeClass('transparent');
         }
       });
-      $(window).on('touchmove', () => {
+      $('body').on('touchmove', () => {
         const position = $('body').scrollTop();
         if (position === 0) {
           topBar.addClass('transparent');
