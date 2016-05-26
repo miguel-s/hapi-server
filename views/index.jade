@@ -277,7 +277,8 @@ block scripts
           topBar.removeClass('transparent');
         }
       });
-      $('body').on('touchmove', () => {
+      $('body').on('touchmove', (e) => {
+        e.preventDefault();
         const position = $('body').scrollTop();
         if (position === 0) {
           topBar.addClass('transparent');
@@ -288,7 +289,8 @@ block scripts
       $('.scroll').on('click', () => {
         $('html, body').animate({scrollTop: $(window).height() - $('.top-bar').height()})
       });
-      $('.scroll').on('touchend', () => {
+      $('.scroll').on('touchend', (e) => {
+        e.preventDefault();
         $('html, body').animate({scrollTop: $(window).height() - $('.top-bar').height()})
       });
     });
