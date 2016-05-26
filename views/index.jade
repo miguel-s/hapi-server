@@ -269,16 +269,8 @@ block scripts
   script.
     $(() => {
       const topBar = $('.top-bar');
-      $('body').on('scroll', () => {
-        const position = $('body').scrollTop();
-        if (position === 0) {
-          topBar.addClass('transparent');
-        } else {
-          topBar.removeClass('transparent');
-        }
-      });
-      $('body').on('touchmove', () => {
-        const position = $('body').scrollTop();
+      $(window).on('scroll', () => {
+        const position = $(document).scrollTop();
         if (position === 0) {
           topBar.addClass('transparent');
         } else {
@@ -286,9 +278,6 @@ block scripts
         }
       });
       $('.scroll').on('click', () => {
-        $('html, body').animate({scrollTop: $(window).height() - $('.top-bar').height()})
-      });
-      $('.scroll').on('touchend', () => {
         $('html, body').animate({scrollTop: $(window).height() - $('.top-bar').height()})
       });
     });
