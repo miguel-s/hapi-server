@@ -64,7 +64,7 @@ module.exports = {
       },
     },
     {
-      plugin: './plugins/index',
+      plugin: './plugins/wantit_web',
       options: {
         select: ['web'],
       },
