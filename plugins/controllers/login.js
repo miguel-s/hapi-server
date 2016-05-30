@@ -2,6 +2,7 @@
 
 const aguid = require('aguid');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 module.exports = function handler(request, reply) {
   let account = {};
@@ -39,6 +40,10 @@ module.exports = function handler(request, reply) {
         }
 
         account = Object.assign(account, row, { scope: row.scope.split(', ') });
+        account.token = jwt.sign(
+          { iat: Math.floor(Date.now() / 1000), jti: aguid(), id: row.id },
+          process.env.JWT_SECRET
+        );
         if (account.password) delete account.password; // don't save pw in cookie
         const sid = String(aguid());
         request.server.app.cache.set(sid, { account }, 0, (err) => {

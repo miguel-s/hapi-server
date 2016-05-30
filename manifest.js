@@ -34,6 +34,24 @@ module.exports = {
       },
     },
     {
+      plugin: './plugins/auth-cookie',
+      options: {
+        select: ['web'],
+      },
+    },
+    {
+      plugin: 'hapi-auth-jwt2',
+      options: {
+        select: ['web'],
+      },
+    },
+    {
+      plugin: './plugins/auth-jwt',
+      options: {
+        select: ['web'],
+      },
+    },
+    {
       plugin: './plugins/good',
       options: {
         select: ['web'],
@@ -52,12 +70,6 @@ module.exports = {
       },
     },
     {
-      plugin: './plugins/auth-cookie',
-      options: {
-        select: ['web'],
-      },
-    },
-    {
       plugin: './plugins/static',
       options: {
         select: ['web'],
@@ -65,6 +77,12 @@ module.exports = {
     },
     {
       plugin: './plugins/wantit_web',
+      options: {
+        select: ['web'],
+      },
+    },
+    {
+      plugin: './plugins/wantit_api',
       options: {
         select: ['web'],
       },
