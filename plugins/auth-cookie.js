@@ -13,7 +13,7 @@ exports.register.attributes = {
 
 exports.options = internals.options = {
   cacheOptions: { segment: 'sessions', expiresIn: 3 * 24 * 60 * 60 * 1000 },
-  password: 'y00y-00m3-m4k1-z00m-y00y-00m3-m4k1-z00m-',
+  password: process.env.COOKIE_SECRET,
   cookie: 'sid',
   redirectTo: '/login',
   isSecure: (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging'),
@@ -23,7 +23,7 @@ internals.after = (server, next) => {
   const cache = server.cache(internals.options.cacheOptions);
   server.app.cache = cache;
 
-  server.auth.strategy('session', 'cookie', true, {
+  server.auth.strategy('session', 'cookie', false, {
     password: internals.options.password, // must be length 32 hapi v13 requirement.
     cookie: internals.options.cookie,
     redirectTo: internals.options.redirectTo,
