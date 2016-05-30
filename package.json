@@ -9,7 +9,7 @@
     "js:clean": "rm -rf public/js/*",
     "js:compile": "babel src/js -d public/js",
     "js:uglify": "uglifyjs-folder public/js/ test-folder -eo public/js/",
-    "build:js": "npm run css:clean && npm run js:compile && npm run js:uglify",
+    "build:js": "npm run js:clean && npm run js:compile && npm run js:uglify",
     "css:clean": "rm -rf public/css/*",
     "css:compile": "node-sass src/sass/ -o public/css/ --output-style compressed",
     "css:rename": "renamer \"public/css/*\" --find \".css\" --replace \".min.css\"",
