@@ -5,16 +5,16 @@ const sqlite3 = require('sqlite3').verbose();
 const internals = {};
 
 exports.register = (server, options, next) => {
-  const webTls = server.select('web-tls');
+  const web = server.select('web');
 
-  webTls.ext('onPreStart', (request, reply) => {
-    webTls.app.db = new sqlite3.Database('database.db');
+  web.ext('onPreStart', (request, reply) => {
+    web.app.db = new sqlite3.Database('database.db');
     return reply();
   });
 
-  webTls.ext('onPreStop', (request, reply) => {
-    if (!webTls.app.db) return reply();
-    webTls.app.db.close((err) => {
+  web.ext('onPreStop', (request, reply) => {
+    if (!web.app.db) return reply();
+    web.app.db.close((err) => {
       if (err) return reply(err);
       return reply();
     });
