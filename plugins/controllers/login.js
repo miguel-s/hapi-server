@@ -5,10 +5,11 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 module.exports = function handler(request, reply) {
+  const prefix = request.route.realm.modifiers.route.prefix;
   let account = {};
 
   if (request.auth.isAuthenticated) {
-    return reply.redirect('/');
+    return reply.redirect(prefix);
   }
 
   if (!request.payload.email || !request.payload.password) {
@@ -17,6 +18,9 @@ module.exports = function handler(request, reply) {
       email: request.payload.email,
     });
   }
+
+  // TODO:
+  // Add if() Joi returns an error
 
   request.server.app.db.get('SELECT * FROM Users WHERE email = ?', request.payload.email,
     (err, row) => {
@@ -52,10 +56,10 @@ module.exports = function handler(request, reply) {
           request.cookieAuth.set({ sid });
 
           if (account.scope.indexOf('admin') !== -1) {
-            return reply.redirect('/');
+            return reply.redirect(prefix);
           }
 
-          return reply.redirect('/');
+          return reply.redirect(prefix);
         });
       });
     }

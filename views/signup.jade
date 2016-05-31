@@ -11,7 +11,7 @@ block content
         |  Signup
       if message
         div.callout.alert= message
-      form(action="/signup" method="post")
+      form(action="#{prefix}/signup" method="post")
         label Email
           input(type="text" name="email" placeholder="Email" value=email)
         label Password
@@ -20,8 +20,8 @@ block content
       hr
       p Already have an account?
         | #{space}
-        a(href="/login") Login
+        a(href="#{prefix}/login") Login
       p Or go
         | #{space}
-        a(href="/") home
+        a(href="#{prefix}") home
         | .

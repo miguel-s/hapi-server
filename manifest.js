@@ -70,21 +70,24 @@ module.exports = {
       },
     },
     {
-      plugin: './plugins/static',
+      plugin: './plugins/wantit_static',
       options: {
         select: ['web'],
+        routes: { prefix: '/wantit' },
       },
     },
     {
       plugin: './plugins/wantit_web',
       options: {
         select: ['web'],
+        routes: { prefix: '/wantit' },
       },
     },
     {
       plugin: './plugins/wantit_api',
       options: {
         select: ['web'],
+        routes: { prefix: '/wantit/api' },
       },
     },
     {

@@ -24,6 +24,9 @@ module.exports = function handler(request, reply, source, error) {
     });
   }
 
+  // TODO:
+  // Add if() Joi returns an error
+
   request.server.app.db.get('SELECT * FROM Users WHERE email = ?', request.payload.email,
     (err, row) => {
       if (err) return reply(err);

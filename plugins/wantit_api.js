@@ -21,7 +21,7 @@ internals.after = (server, next) => {
     // User route
     {
       method: 'GET',
-      path: '/api/v1/user/{id}',
+      path: '/v1/user/{id}',
       config: {
         description: 'Returns a user json object',
         auth: { strategy: 'token', mode: 'required' },
