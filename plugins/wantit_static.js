@@ -8,7 +8,7 @@ exports.register = (server, options, next) => {
 };
 
 exports.register.attributes = {
-  name: 'Static',
+  name: 'Wantit-static',
 };
 
 internals.after = (server, next) => {
