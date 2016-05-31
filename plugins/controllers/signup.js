@@ -9,6 +9,7 @@ module.exports = function handler(request, reply, source, error) {
 
   if (!request.server.app.settings.allowSignup) {
     return reply.view('signup', {
+      prefix,
       message: 'Signup not allowed',
       email: request.payload.email,
     });
@@ -20,13 +21,29 @@ module.exports = function handler(request, reply, source, error) {
 
   if (!request.payload.email || !request.payload.password) {
     return reply.view('signup', {
+      prefix,
       message: 'Missing email or password',
       email: request.payload.email,
     });
   }
 
-  // TODO:
-  // Add if() Joi returns an error
+  // Joi error handling
+  if (error && error.data) {
+    if (error.data.details[0].path === 'email') {
+      return reply.view('signup', {
+        prefix,
+        message: 'Must be a valid email', // error.data.details[0].message,
+        email: request.payload.email,
+      });
+    }
+    if (error.data.details[0].path === 'password') {
+      return reply.view('signup', {
+        prefix,
+        message: 'Password must be at least 6 characters long', // error.data.details[0].message,
+        email: request.payload.email,
+      });
+    }
+  }
 
   request.server.app.db.get('SELECT * FROM Users WHERE email = ?', request.payload.email,
     (err, row) => {
@@ -34,6 +51,7 @@ module.exports = function handler(request, reply, source, error) {
 
       if (row) {
         return reply.view('signup', {
+          prefix,
           message: 'User already exists',
           email: request.payload.email,
         });

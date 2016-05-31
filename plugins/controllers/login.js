@@ -4,7 +4,7 @@ const aguid = require('aguid');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-module.exports = function handler(request, reply) {
+module.exports = function handler(request, reply, source, error) {
   const prefix = request.route.realm.modifiers.route.prefix;
   let account = {};
 
@@ -14,13 +14,22 @@ module.exports = function handler(request, reply) {
 
   if (!request.payload.email || !request.payload.password) {
     return reply.view('login', {
+      prefix,
       message: 'Missing email or password',
       email: request.payload.email,
     });
   }
 
-  // TODO:
-  // Add if() Joi returns an error
+  // Joi error handling -> only check and display email error
+  if (error && error.data) {
+    if (error.data.details[0].path === 'email') {
+      return reply.view('login', {
+        prefix,
+        message: 'Must be a valid email', // error.data.details[0].message,
+        email: request.payload.email,
+      });
+    }
+  }
 
   request.server.app.db.get('SELECT * FROM Users WHERE email = ?', request.payload.email,
     (err, row) => {
@@ -28,6 +37,7 @@ module.exports = function handler(request, reply) {
 
       if (!row) {
         return reply.view('login', {
+          prefix,
           message: 'Invalid email or password',
           email: request.payload.email,
         });
@@ -38,6 +48,7 @@ module.exports = function handler(request, reply) {
 
         if (!res) {
           return reply.view('login', {
+            prefix,
             message: 'Invalid email or password',
             email: request.payload.email,
           });
