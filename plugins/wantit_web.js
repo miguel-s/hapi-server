@@ -29,7 +29,7 @@ internals.after = (server, next) => {
         plugins: { 'hapi-auth-cookie': { redirectTo: `${internals.options.prefix}/login` } },
         handler: {
           view: {
-            template: 'index',
+            template: 'wantit',
             context: { prefix: internals.options.prefix },
           },
         },

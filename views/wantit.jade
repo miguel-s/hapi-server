@@ -1,0 +1,103 @@
+extends ./layouts/base.jade
+
+append head
+  title WANTit
+  link(rel="stylesheet" href="#{prefix}/css/index.min.css")
+
+block header
+  +header('fixed transparent transition')
+
+block content
+  section.hero
+    div.overlay
+    div.row.align-center.text-center
+      div.small-8.column.align-self-top
+        h1 Anything you want.<br>Delivered directly to you.
+    div.row.align-center.text-center
+      div.small-6.column.align-self-bottom
+        h5 WANTit is an iPhone app that connects you to experts to help find you what you want, when you want.
+    div.scroll.text-center
+      span Scroll to learn more
+      br
+      span.fa.fa-chevron-down
+  section.how-it-works
+    div.row.title.text-center
+      div.column.align-self-middle
+        h3 How it works
+    div.row.content.align-middle
+      div.small-12.medium-expand.column
+        div.video
+          span.fa.fa-play-circle-o.play-icon
+      div.small-12.medium-expand.column
+        div.steps
+          div.row
+            div.small-1.column
+              span.fa.fa-check
+            div.column
+              h5 Ipsum sunt in officia eu.
+              p Reprehenderit Lorem qui sint do adipisicing duis deserunt irure nostrud reprehenderit aliqua.
+          div.steps
+          div.row
+            div.small-1.column
+              span.fa.fa-check
+            div.column
+              h5 Ipsum sunt in officia eu.
+              p Reprehenderit Lorem qui sint do adipisicing duis deserunt irure nostrud reprehenderit aliqua.
+          div.steps
+          div.row
+            div.small-1.column
+              span.fa.fa-check
+            div.column
+              h5 Ipsum sunt in officia eu.
+              p Reprehenderit Lorem qui sint do adipisicing duis deserunt irure nostrud reprehenderit aliqua.
+  section.download-app.text-center
+    div.row.text-center
+      div.small-12.medium-expand.column.align-self-middle
+        div.devices
+          div.device.android
+          div.device.ios
+      div.small-12.medium-expand.column.align-self-middle
+        h3 Download WANTit and start enjoying a brand new shopping experience.
+        h5 First delivery free!
+        a(href="#")
+          img(src="#{prefix}/img/badge_appstore.svg" height="72px" width="200px").store-badge
+        a(href="#")
+          img(src="#{prefix}/img/badge_googleplay.png" height="72px" width="200px").store-badge
+  section.join-wantit.text-center
+    div.row.text-center
+      div.small-12.medium-expand.column.align-self-middle
+        h3 Do you want to join WANTit Business?
+        p Tempor ad nostrud exercitation ex ex sint minim proident nulla ullamco tempor incididunt aliquip. Magna commodo ex dolore pariatur ut esse et quis officia occaecat minim. Tempor aliqua ipsum sunt pariatur in est proident laborum do proident culpa sunt officia ullamco. Minim fugiat proident adipisicing eiusmod reprehenderit anim excepteur adipisicing. Nisi incididunt eu est et ad in veniam.
+        button.button.large Become a WANTit Vendor
+  footer
+    div.row.text-center
+      div.column.align-self-top.text-left
+        a(href="#") Businesses
+        a(href="#") About Us
+        a(href="#") Work with us
+      div.column.align-self-bottom
+        div.media
+          div.item
+            a(href="#")
+              span.fa.fa-facebook
+          div.item
+            a(href="#")
+              span.fa.fa-twitter
+          div.item
+            a(href="#")
+              span.fa.fa-instagram
+      div.column.align-self-top.text-right
+        a(href="#") Blog
+        a(href="#") FAQ
+        a(href="#") Contact
+    div.row.column.text-center
+      div.copy.align-self-center
+        span Copyright, 2016.
+        span #{space} | #{space}
+        a(href="#") Terms of service
+        span #{space} | #{space}
+        a(href="#") Privacy policy
+
+block scripts
+  script(src="#{prefix}/libs/jquery/jquery-2.2.0.min.js")
+  script(src="#{prefix}/js/index.min.js")
