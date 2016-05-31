@@ -4,6 +4,7 @@ const aguid = require('aguid');
 const bcrypt = require('bcryptjs');
 
 module.exports = function handler(request, reply, source, error) {
+  const prefix = request.route.realm.modifiers.route.prefix;
   let account = {};
 
   if (!request.server.app.settings.allowSignup) {
@@ -14,7 +15,7 @@ module.exports = function handler(request, reply, source, error) {
   }
 
   if (request.auth.isAuthenticated) {
-    return reply.redirect('/admin');
+    return reply.redirect(prefix);
   }
 
   if (!request.payload.email || !request.payload.password) {
@@ -62,7 +63,7 @@ module.exports = function handler(request, reply, source, error) {
               request.server.app.cache.set(sid, { account }, 0, (err) => {
                 if (err) return reply(err);
                 request.cookieAuth.set({ sid });
-                return reply.redirect('/admin');
+                return reply.redirect(prefix);
               });
             }
           );
