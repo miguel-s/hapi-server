@@ -6,16 +6,14 @@ const settings = require('./settings.js');
 
 const internals = {};
 internals.manifest = require('./manifest');
-internals.composeOptions = { relativeTo: __dirname };
+internals.composeOptions = { relativeTo: `${__dirname}/plugins` };
 
 Server.init(internals.manifest, internals.composeOptions, (err, server) => {
   Hoek.assert(!err, err);
 
-  const web = server.select('web');
-  // const webTls = server.select('web-tls');
+  const heroku = server.select('heroku');
 
-  web.app.settings = internals.settings = settings;
+  heroku.app.settings = internals.settings = settings;
 
-  console.log(`Web server started at: ${web.info.uri}`);
-  // console.log(`WebTLS server started at: ${webTls.info.uri}`);
+  console.log(`Server started at: ${heroku.info.uri}`);
 });

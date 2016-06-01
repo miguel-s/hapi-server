@@ -1,111 +1,77 @@
 'use strict';
 
-// const config = require('./config/config.js');
-
 module.exports = {
   connections: [
     {
       port: Number(process.env.PORT) || 8000,
-      labels: ['web'],
+      labels: ['heroku'],
     },
-    // {
-    //   port: process.env.PORT || 8001,
-    //   labels: ['web-tls'],
-    //   tls: config.tls,
-    // },
   ],
   registrations: [
+    // Basic plugins
     {
       plugin: 'inert',
       options: {
-        select: ['web'],
+        select: ['heroku'],
       },
     },
     {
       plugin: 'vision',
       options: {
-        select: ['web'],
+        select: ['heroku'],
       },
     },
     {
       plugin: 'hapi-auth-cookie',
       options: {
-        select: ['web'],
-      },
-    },
-    {
-      plugin: './plugins/auth-cookie',
-      options: {
-        select: ['web'],
+        select: ['heroku'],
       },
     },
     {
       plugin: 'hapi-auth-jwt2',
       options: {
-        select: ['web'],
+        select: ['heroku'],
+      },
+    },
+
+    // Global plugins
+    {
+      plugin: './good',
+      options: {
+        select: ['heroku'],
       },
     },
     {
-      plugin: './plugins/auth-jwt',
+      plugin: './database',
       options: {
-        select: ['web'],
+        select: ['heroku'],
       },
     },
     {
-      plugin: './plugins/good',
+      plugin: './tls',
       options: {
-        select: ['web'],
+        select: ['heroku'],
+      },
+    },
+    // {
+    //   plugin: './lout',
+    //   options: {
+    //     select: ['server'],
+    //   },
+    // },
+
+    // Modules
+    {
+      plugin: './server/index',
+      options: {
+        select: ['heroku'],
       },
     },
     {
-      plugin: './plugins/jade',
+      plugin: './wantit/index',
       options: {
-        select: ['web'],
-      },
-    },
-    {
-      plugin: './plugins/database',
-      options: {
-        select: ['web'],
-      },
-    },
-    {
-      plugin: './plugins/wantit_static',
-      options: {
-        select: ['web'],
+        select: ['heroku'],
         routes: { prefix: '/wantit' },
-      },
-    },
-    {
-      plugin: './plugins/wantit_web',
-      options: {
-        select: ['web'],
-        routes: { prefix: '/wantit' },
-      },
-    },
-    {
-      plugin: './plugins/wantit_api',
-      options: {
-        select: ['web'],
-        routes: { prefix: '/wantit/api' },
-      },
-    },
-    {
-      plugin: './plugins/errors',
-      options: {
-        select: ['web'],
-      },
-    },
-    {
-      plugin: './plugins/tls',
-      options: {
-        select: ['web'],
-      },
-    },
-    {
-      plugin: './plugins/lout',
-      options: {
-        select: ['web'],
       },
     },
   ],

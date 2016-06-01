@@ -15,7 +15,7 @@ exports.register.attributes = {
 
 exports.options = internals.options = {
   auth: {
-    strategy: 'session',
+    strategy: 'server-session',
     mode: 'try',
     scope: ['admin'],
   },

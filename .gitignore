@@ -5,3 +5,6 @@ npm-debug.log
 backups
 old
 config
+
+server/node_modules
+wantit/node_modules
