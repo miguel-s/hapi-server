@@ -1,5 +1,6 @@
 'use strict';
 
+const dotenv = require('dotenv').config();
 const Hoek = require('hoek');
 const Server = require('./server.js');
 const settings = require('./settings.js');
