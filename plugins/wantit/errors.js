@@ -6,17 +6,39 @@ const Joi = require('joi');
 const internals = {};
 
 exports.register = (server, options, next) => {
-  const heroku = server.select('heroku');
+  server.dependency(['vision'], internals.after);
+  return next();
+};
+
+exports.register.attributes = {
+  name: 'WantitErrors',
+};
+
+internals.after = (server, next) => {
+  server.views({
+    engines: {
+      jade: {
+        module: require('jade'),
+        // set 'false' for development! set 'true' for production!
+        isCached: (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging'),
+      },
+    },
+    relativeTo: __dirname,
+    path: 'views',
+  });
 
   // Handle Bad Route Attempt
-  heroku.ext('onPreResponse', (request, reply) => {
-    if (request.response.isBoom) {
-      // statusCode 404 Not Found
-      if (request.response.output.statusCode === 404) {
-        return reply.view('error', {
-          statusCode: request.response.output.statusCode,
-          error: request.response.output.payload.error,
-        }).code(404);
+  server.ext('onPreResponse', (request, reply) => {
+    if (request.path.indexOf('/wantit') !== -1) {
+      if (request.response.isBoom) {
+        // statusCode 404 Not Found
+        if (request.response.output.statusCode === 404) {
+          return reply.view('error', {
+            prefix: '/wantit',
+            statusCode: request.response.output.statusCode,
+            error: request.response.output.payload.error,
+          }).code(404);
+        }
       }
     }
 
@@ -24,7 +46,7 @@ exports.register = (server, options, next) => {
   });
 
   // Handle Forbidden
-  heroku.ext('onPreResponse', (request, reply) => {
+  server.ext('onPreResponse', (request, reply) => {
     if (request.response.isBoom) {
       // statusCode 404 Not Found
       if (request.response.output.statusCode === 403) {
@@ -39,7 +61,7 @@ exports.register = (server, options, next) => {
   });
 
   // Handle Internal Server Error
-  heroku.ext('onPreResponse', (request, reply) => {
+  server.ext('onPreResponse', (request, reply) => {
     if (request.response.isBoom) {
       // statusCode 500 Internal Server Error
       if (request.response.output.statusCode === 500) {
@@ -54,7 +76,7 @@ exports.register = (server, options, next) => {
   });
 
   // Handle Bad Request
-  heroku.ext('onPreResponse', (request, reply) => {
+  server.ext('onPreResponse', (request, reply) => {
     if (request.response.isBoom) {
       // statusCode 400 Bad Request
       if (request.response.output.statusCode === 400) {
@@ -68,15 +90,12 @@ exports.register = (server, options, next) => {
       const result = Joi.validate(request.response.message, schema);
 
       if (result.error === null) {
-        return reply.redirect(`${heroku.info.uri}`);
+        return reply.redirect(`${server.info.uri}`);
       }
     }
 
     return reply.continue();
   });
-  return next();
-};
 
-exports.register.attributes = {
-  name: 'WantitErrors',
+  return next();
 };
