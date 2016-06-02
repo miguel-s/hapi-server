@@ -74,5 +74,12 @@ module.exports = {
         routes: { prefix: '/wantit' },
       },
     },
+    {
+      plugin: './ibc/index',
+      options: {
+        select: ['heroku'],
+        routes: { prefix: '/ibc' },
+      },
+    },
   ],
 };
