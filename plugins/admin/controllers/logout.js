@@ -1,6 +1,6 @@
 'use strict';
 
 module.exports = function handler(request, reply) {
-  request.cookieAuthServer.clear();
+  request.cookieAuthAdmin.clear();
   return reply.redirect('/');
 };

@@ -8,23 +8,23 @@ exports.register = (server, options, next) => {
 };
 
 exports.register.attributes = {
-  name: 'ServerAuthCookie',
+  name: 'AdminAuthCookie',
 };
 
 exports.options = internals.options = {
-  cacheOptions: { segment: 'server-sessions', expiresIn: 3 * 24 * 60 * 60 * 1000 },
+  cacheOptions: { segment: 'admin-sessions', expiresIn: 3 * 24 * 60 * 60 * 1000 },
   password: process.env.COOKIE_SECRET,
-  cookie: 'server-sid',
+  cookie: 'admin-sid',
   redirectTo: '/login',
   isSecure: (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging'),
-  requestDecoratorName: 'cookieAuthServer',
+  requestDecoratorName: 'cookieAuthAdmin',
 };
 
 internals.after = (server, next) => {
   const cache = server.cache(internals.options.cacheOptions);
   server.app.cache = cache;
 
-  server.auth.strategy('server-session', 'cookie', false, {
+  server.auth.strategy('admin-session', 'cookie', false, {
     password: internals.options.password, // must be length 32 hapi v13 requirement.
     cookie: internals.options.cookie,
     redirectTo: internals.options.redirectTo,

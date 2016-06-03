@@ -3,7 +3,7 @@
 const internals = {};
 
 exports.register = (server, options, next) => {
-  server.dependency(['vision', 'ServerAuthCookie'], internals.after);
+  server.dependency(['vision', 'AdminAuthCookie'], internals.after);
   return next();
 };
 
@@ -32,7 +32,7 @@ internals.after = (server, next) => {
       path: '/',
       config: {
         description: 'Returns the index page',
-        auth: { strategy: 'server-session', mode: 'try' },
+        auth: { strategy: 'admin-session', mode: 'try' },
         handler: {
           view: {
             template: 'index',
@@ -47,7 +47,7 @@ internals.after = (server, next) => {
       path: '/login',
       config: {
         description: 'Returns a login form',
-        auth: { strategy: 'server-session', mode: 'try' },
+        auth: { strategy: 'admin-session', mode: 'try' },
         plugins: { 'hapi-auth-cookie': { redirectTo: false } },
         handler: {
           view: {
@@ -61,7 +61,7 @@ internals.after = (server, next) => {
       path: '/login',
       config: {
         description: 'Returns a login form',
-        auth: { strategy: 'server-session', mode: 'try' },
+        auth: { strategy: 'admin-session', mode: 'try' },
         plugins: { 'hapi-auth-cookie': { redirectTo: false } },
         validate: {
           payload: require('./models/user.js'),
@@ -87,7 +87,7 @@ internals.after = (server, next) => {
       path: '/signup',
       config: {
         description: 'Returns a sinup form',
-        auth: { strategy: 'server-session', mode: 'try' },
+        auth: { strategy: 'admin-session', mode: 'try' },
         plugins: { 'hapi-auth-cookie': { redirectTo: false } },
         handler: {
           view: {
@@ -101,7 +101,7 @@ internals.after = (server, next) => {
       path: '/signup',
       config: {
         description: 'Returns a sinup form',
-        auth: { strategy: 'server-session', mode: 'try' },
+        auth: { strategy: 'admin-session', mode: 'try' },
         plugins: { 'hapi-auth-cookie': { redirectTo: false } },
         validate: {
           payload: require('./models/user.js'),

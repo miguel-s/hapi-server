@@ -5,7 +5,7 @@ const path = require('path');
 const internals = {};
 
 exports.register = (server, options, next) => {
-  server.dependency(['inert', 'ServerAuthCookie'], internals.after);
+  server.dependency(['inert', 'AdminAuthCookie'], internals.after);
   return next();
 };
 
@@ -23,7 +23,7 @@ internals.after = (server, next) => {
       path: '/img/{path*}',
       config: {
         description: 'Static image assets.',
-        auth: { strategy: 'server-session', mode: 'try' },
+        auth: { strategy: 'admin-session', mode: 'try' },
         plugins: { 'hapi-auth-cookie': { redirectTo: false } },
         handler: {
           directory: {
@@ -39,7 +39,7 @@ internals.after = (server, next) => {
       path: '/js/{path*}',
       config: {
         description: 'Static js scripts assets.',
-        auth: { strategy: 'server-session', mode: 'try' },
+        auth: { strategy: 'admin-session', mode: 'try' },
         plugins: { 'hapi-auth-cookie': { redirectTo: false } },
         handler: {
           directory: {
@@ -55,7 +55,7 @@ internals.after = (server, next) => {
       path: '/css/{path*}',
       config: {
         description: 'Stylesheet static assets.',
-        auth: { strategy: 'server-session', mode: 'try' },
+        auth: { strategy: 'admin-session', mode: 'try' },
         plugins: { 'hapi-auth-cookie': { redirectTo: false } },
         handler: {
           directory: {
@@ -71,7 +71,7 @@ internals.after = (server, next) => {
       path: '/libs/{path*}',
       config: {
         description: 'Stylesheet static assets.',
-        auth: { strategy: 'server-session', mode: 'try' },
+        auth: { strategy: 'admin-session', mode: 'try' },
         plugins: { 'hapi-auth-cookie': { redirectTo: false } },
         handler: {
           directory: {

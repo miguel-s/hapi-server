@@ -2,7 +2,7 @@ extends ./layouts/base.jade
 
 append head
   title WANTit
-  link(rel="stylesheet" href="#{prefix}/css/login.min.css")
+  link(rel="stylesheet" href="/css/login.min.css")
 
 block content
   div.row.align-center.align-middle
@@ -12,7 +12,7 @@ block content
         |  Login
       if message
         div.callout.alert= message
-      form(action="#{prefix}/login" method="post")
+      form(action="/login" method="post")
         label Email
           input(type="text" name="email" placeholder='Email' value=email)
         label Password
@@ -21,8 +21,8 @@ block content
       hr
       p Need an account?
         | #{space}
-        a(href="#{prefix}/signup") Signup
+        a(href="/signup") Signup
       p Or go
         | #{space}
-        a(href="#{prefix}") home
+        a(href="/") home
         | .

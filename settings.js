@@ -1,5 +1,13 @@
 'use strict';
 
 module.exports = {
-  allowSignup: false,
+  admin: {
+    allowSignup: false,
+  },
+  wantit: {
+    allowSignup: true,
+  },
+  ibc: {
+    allowSignup: true,
+  },
 };

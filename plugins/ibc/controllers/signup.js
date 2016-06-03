@@ -4,24 +4,21 @@ const aguid = require('aguid');
 const bcrypt = require('bcryptjs');
 
 module.exports = function handler(request, reply, source, error) {
-  const prefix = request.route.realm.modifiers.route.prefix;
   let account = {};
 
-  if (!request.server.app.settings.allowSignup) {
+  if (!request.server.app.settings.ibc.allowSignup) {
     return reply.view('signup', {
-      prefix,
       message: 'Signup not allowed',
       email: request.payload.email,
     });
   }
 
   if (request.auth.isAuthenticated) {
-    return reply.redirect(prefix);
+    return reply.redirect('/');
   }
 
   if (!request.payload.email || !request.payload.password) {
     return reply.view('signup', {
-      prefix,
       message: 'Missing email or password',
       email: request.payload.email,
     });
@@ -31,14 +28,12 @@ module.exports = function handler(request, reply, source, error) {
   if (error && error.data) {
     if (error.data.details[0].path === 'email') {
       return reply.view('signup', {
-        prefix,
         message: 'Must be a valid email', // error.data.details[0].message,
         email: request.payload.email,
       });
     }
     if (error.data.details[0].path === 'password') {
       return reply.view('signup', {
-        prefix,
         message: 'Password must be at least 6 characters long', // error.data.details[0].message,
         email: request.payload.email,
       });
@@ -51,7 +46,6 @@ module.exports = function handler(request, reply, source, error) {
 
       if (row) {
         return reply.view('signup', {
-          prefix,
           message: 'User already exists',
           email: request.payload.email,
         });
@@ -81,7 +75,7 @@ module.exports = function handler(request, reply, source, error) {
               request.server.app.cache.set(sid, { account }, 0, (err) => {
                 if (err) return reply(err);
                 request.cookieAuthIbc.set({ sid });
-                return reply.redirect(prefix);
+                return reply.redirect('/');
               });
             }
           );

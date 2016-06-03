@@ -34,7 +34,6 @@ internals.after = (server, next) => {
         // statusCode 404 Not Found
         if (request.response.output.statusCode === 404) {
           return reply.view('error', {
-            prefix: '/wantit',
             statusCode: request.response.output.statusCode,
             error: request.response.output.payload.error,
           }).code(404);

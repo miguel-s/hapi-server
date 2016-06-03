@@ -2,7 +2,7 @@ extends ./layouts/base.jade
 
 append head
   title WANTit
-  link(rel="stylesheet" href="#{prefix}/css/index.min.css")
+  link(rel="stylesheet" href="/css/index.min.css")
 
 block header
   +header('fixed transparent transition')
@@ -60,9 +60,9 @@ block content
         h3 Download WANTit and start enjoying a brand new shopping experience.
         h5 First delivery free!
         a(href="#")
-          img(src="#{prefix}/img/badge_appstore.svg" height="72px" width="200px").store-badge
+          img(src="/img/badge_appstore.svg" height="72px" width="200px").store-badge
         a(href="#")
-          img(src="#{prefix}/img/badge_googleplay.png" height="72px" width="200px").store-badge
+          img(src="/img/badge_googleplay.png" height="72px" width="200px").store-badge
   section.join-wantit.text-center
     div.row.text-center
       div.small-12.medium-expand.column.align-self-middle
@@ -99,5 +99,5 @@ block content
         a(href="#") Privacy policy
 
 block scripts
-  script(src="#{prefix}/libs/jquery/jquery-2.2.0.min.js")
-  script(src="#{prefix}/js/index.min.js")
+  script(src="/libs/jquery/jquery-2.2.0.min.js")
+  script(src="/js/index.min.js")

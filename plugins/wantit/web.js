@@ -11,10 +11,6 @@ exports.register.attributes = {
   name: 'WantitWeb',
 };
 
-exports.options = internals.options = {
-  prefix: '/wantit',
-};
-
 internals.after = (server, next) => {
   server.views({
     engines: {
@@ -37,11 +33,10 @@ internals.after = (server, next) => {
       config: {
         description: 'Returns the index page',
         auth: { strategy: 'wantit-session', mode: 'try' },
-        plugins: { 'hapi-auth-cookie': { redirectTo: `${internals.options.prefix}/login` } },
+        plugins: { 'hapi-auth-cookie': { redirectTo: '/login' } },
         handler: {
           view: {
             template: 'index',
-            context: { prefix: internals.options.prefix },
           },
         },
       },
@@ -58,7 +53,6 @@ internals.after = (server, next) => {
         handler: {
           view: {
             template: 'login',
-            context: { prefix: internals.options.prefix },
           },
         },
       },
@@ -99,7 +93,6 @@ internals.after = (server, next) => {
         handler: {
           view: {
             template: 'signup',
-            context: { prefix: internals.options.prefix },
           },
         },
       },
@@ -126,11 +119,10 @@ internals.after = (server, next) => {
       config: {
         description: 'Returns the dashboard page',
         auth: { strategy: 'wantit-session', mode: 'try' },
-        plugins: { 'hapi-auth-cookie': { redirectTo: `${internals.options.prefix}/login` } },
+        plugins: { 'hapi-auth-cookie': { redirectTo: '/login' } },
         handler: {
           view: {
             template: 'dashboard',
-            context: { prefix: internals.options.prefix },
           },
         },
       },
@@ -143,7 +135,7 @@ internals.after = (server, next) => {
       config: {
         description: 'Returns the profile page',
         auth: { strategy: 'wantit-session', mode: 'try' },
-        plugins: { 'hapi-auth-cookie': { redirectTo: `${internals.options.prefix}/login` } },
+        plugins: { 'hapi-auth-cookie': { redirectTo: '/login' } },
         handler: require('./controllers/profile.js'),
       },
     },
@@ -155,11 +147,10 @@ internals.after = (server, next) => {
       config: {
         description: 'Returns the cookies policy page',
         auth: { strategy: 'wantit-session', mode: 'try' },
-        plugins: { 'hapi-auth-cookie': { redirectTo: `${internals.options.prefix}/login` } },
+        plugins: { 'hapi-auth-cookie': { redirectTo: '/login' } },
         handler: {
           view: {
             template: 'cookies',
-            context: { prefix: internals.options.prefix },
           },
         },
       },
@@ -172,11 +163,10 @@ internals.after = (server, next) => {
       config: {
         description: 'Returns the admin control panel',
         auth: { strategy: 'wantit-session', mode: 'try', scope: ['admin'] },
-        plugins: { 'hapi-auth-cookie': { redirectTo: `${internals.options.prefix}/login` } },
+        plugins: { 'hapi-auth-cookie': { redirectTo: '/login' } },
         handler: {
           view: {
             template: 'admin',
-            context: { prefix: internals.options.prefix },
           },
         },
       },

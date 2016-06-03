@@ -3,8 +3,16 @@
 module.exports = {
   connections: [
     {
-      port: Number(process.env.PORT) || 8000,
-      labels: ['heroku'],
+      port: process.env.PORT_ADMIN,
+      labels: ['admin'],
+    },
+    {
+      port: process.env.PORT_WANTIT,
+      labels: ['wantit'],
+    },
+    {
+      port: process.env.PORT_IBC,
+      labels: ['ibc'],
     },
   ],
   registrations: [
@@ -12,25 +20,25 @@ module.exports = {
     {
       plugin: 'inert',
       options: {
-        select: ['heroku'],
+        select: ['admin', 'wantit', 'ibc'],
       },
     },
     {
       plugin: 'vision',
       options: {
-        select: ['heroku'],
+        select: ['admin', 'wantit', 'ibc'],
       },
     },
     {
       plugin: 'hapi-auth-cookie',
       options: {
-        select: ['heroku'],
+        select: ['admin', 'wantit', 'ibc'],
       },
     },
     {
       plugin: 'hapi-auth-jwt2',
       options: {
-        select: ['heroku'],
+        select: ['admin', 'wantit', 'ibc'],
       },
     },
 
@@ -38,21 +46,21 @@ module.exports = {
     {
       plugin: './good',
       options: {
-        select: ['heroku'],
+        select: ['admin', 'wantit', 'ibc'],
       },
     },
     {
       plugin: './database',
       options: {
-        select: ['heroku'],
+        select: ['admin', 'wantit', 'ibc'],
       },
     },
-    {
-      plugin: './tls',
-      options: {
-        select: ['heroku'],
-      },
-    },
+    // {
+    //   plugin: './tls',
+    //   options: {
+    //     select: ['admin', 'wantit', 'ibc'],
+    //   },
+    // },
     // {
     //   plugin: './lout',
     //   options: {
@@ -62,23 +70,21 @@ module.exports = {
 
     // Modules
     {
-      plugin: './server/index',
+      plugin: './admin/index',
       options: {
-        select: ['heroku'],
+        select: ['admin'],
       },
     },
     {
       plugin: './wantit/index',
       options: {
-        select: ['heroku'],
-        routes: { prefix: '/wantit' },
+        select: ['wantit'],
       },
     },
     {
       plugin: './ibc/index',
       options: {
-        select: ['heroku'],
-        routes: { prefix: '/ibc' },
+        select: ['ibc'],
       },
     },
   ],

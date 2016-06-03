@@ -5,16 +5,14 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 module.exports = function handler(request, reply, source, error) {
-  const prefix = request.route.realm.modifiers.route.prefix;
   let account = {};
 
   if (request.auth.isAuthenticated) {
-    return reply.redirect(prefix);
+    return reply.redirect('/');
   }
 
   if (!request.payload.email || !request.payload.password) {
     return reply.view('login', {
-      prefix,
       message: 'Missing email or password',
       email: request.payload.email,
     });
@@ -24,7 +22,6 @@ module.exports = function handler(request, reply, source, error) {
   if (error && error.data) {
     if (error.data.details[0].path === 'email') {
       return reply.view('login', {
-        prefix,
         message: 'Must be a valid email', // error.data.details[0].message,
         email: request.payload.email,
       });
@@ -37,7 +34,6 @@ module.exports = function handler(request, reply, source, error) {
 
       if (!row) {
         return reply.view('login', {
-          prefix,
           message: 'Invalid email or password',
           email: request.payload.email,
         });
@@ -48,7 +44,6 @@ module.exports = function handler(request, reply, source, error) {
 
         if (!res) {
           return reply.view('login', {
-            prefix,
             message: 'Invalid email or password',
             email: request.payload.email,
           });
@@ -67,10 +62,10 @@ module.exports = function handler(request, reply, source, error) {
           request.cookieAuthIbc.set({ sid });
 
           if (account.scope.indexOf('admin') !== -1) {
-            return reply.redirect(prefix);
+            return reply.redirect('/');
           }
 
-          return reply.redirect(prefix);
+          return reply.redirect('/');
         });
       });
     }

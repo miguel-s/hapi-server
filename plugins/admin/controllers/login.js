@@ -59,7 +59,7 @@ module.exports = function handler(request, reply, source, error) {
         request.server.app.cache.set(sid, { account }, 0, (err) => {
           if (err) return reply(err);
 
-          request.cookieAuthServer.set({ sid });
+          request.cookieAuthAdmin.set({ sid });
 
           if (account.scope.indexOf('admin') !== -1) {
             return reply.redirect('/');
