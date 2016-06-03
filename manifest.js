@@ -70,19 +70,19 @@ module.exports = {
 
     // Modules
     {
-      plugin: './admin/index',
+      plugin: '../../hapi-admin/index',
       options: {
         select: ['admin'],
       },
     },
     {
-      plugin: './wantit/index',
+      plugin: '../../hapi-wantit/index',
       options: {
         select: ['wantit'],
       },
     },
     {
-      plugin: './ibc/index',
+      plugin: '../../hapi-ibc/index',
       options: {
         select: ['ibc'],
       },
