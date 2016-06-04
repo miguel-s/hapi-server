@@ -6,4 +6,4 @@ npm-debug.log
 backups
 old
 config
-.db
+*.db
