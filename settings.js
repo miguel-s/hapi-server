@@ -5,9 +5,9 @@ module.exports = {
     allowSignup: false,
   },
   wantit: {
-    allowSignup: true,
+    allowSignup: false,
   },
   ibc: {
-    allowSignup: true,
+    allowSignup: false,
   },
 };
