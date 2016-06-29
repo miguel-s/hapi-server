@@ -7,10 +7,6 @@ module.exports = {
       labels: ['admin'],
     },
     {
-      port: process.env.PORT_WANTIT,
-      labels: ['wantit'],
-    },
-    {
       port: process.env.PORT_IBC,
       labels: ['ibc'],
     },
@@ -73,12 +69,6 @@ module.exports = {
       plugin: '../../hapi-admin/index',
       options: {
         select: ['admin'],
-      },
-    },
-    {
-      plugin: '../../hapi-wantit/index',
-      options: {
-        select: ['wantit'],
       },
     },
     {
