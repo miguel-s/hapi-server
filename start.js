@@ -1,6 +1,7 @@
 'use strict';
 
 const dotenv = require('dotenv').config();
+const pmx = require('pmx').init({ http: true });
 const Hoek = require('hoek');
 const Server = require('./server.js');
 
