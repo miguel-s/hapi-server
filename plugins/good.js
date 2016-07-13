@@ -18,9 +18,89 @@ exports.options = internals.options = {
     interval: 30000,
   },
   reporters: {
-    console: [
-      { module: 'good-console' },
-      'stdout',
-    ],
+    ops: [{
+      module: 'good-squeeze',
+      name: 'Squeeze',
+      args: [{ ops: '*' }],
+    }, {
+      module: 'good-squeeze',
+      name: 'SafeJson',
+      args: [
+        null,
+        { separator: ',' },
+      ],
+    }, {
+      module: 'rotating-file-stream',
+      args: [
+        'ops',
+        {
+          size: '10MB',
+          path: './logs',
+        },
+      ],
+    }],
+    log: [{
+      module: 'good-squeeze',
+      name: 'Squeeze',
+      args: [{ log: '*' }],
+    }, {
+      module: 'good-squeeze',
+      name: 'SafeJson',
+      args: [
+        null,
+        { separator: ',' },
+      ],
+    }, {
+      module: 'rotating-file-stream',
+      args: [
+        'log',
+        {
+          size: '10MB',
+          path: './logs',
+        },
+      ],
+    }],
+    res: [{
+      module: 'good-squeeze',
+      name: 'Squeeze',
+      args: [{ response: '*' }],
+    }, {
+      module: 'good-squeeze',
+      name: 'SafeJson',
+      args: [
+        null,
+        { separator: ',' },
+      ],
+    }, {
+      module: 'rotating-file-stream',
+      args: [
+        'res',
+        {
+          size: '10MB',
+          path: './logs',
+        },
+      ],
+    }],
+    err: [{
+      module: 'good-squeeze',
+      name: 'Squeeze',
+      args: [{ error: '*' }],
+    }, {
+      module: 'good-squeeze',
+      name: 'SafeJson',
+      args: [
+        null,
+        { separator: ',' },
+      ],
+    }, {
+      module: 'rotating-file-stream',
+      args: [
+        'err',
+        {
+          size: '10MB',
+          path: './logs',
+        },
+      ],
+    }],
   },
 };

@@ -7,3 +7,4 @@ backups
 old
 config
 *.db
+logs/*
