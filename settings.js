@@ -4,10 +4,7 @@ module.exports = {
   admin: {
     allowSignup: false,
   },
-  wantit: {
-    allowSignup: false,
-  },
-  ibc: {
+  geolink: {
     allowSignup: false,
   },
 };

@@ -7,8 +7,8 @@ module.exports = {
       labels: ['admin'],
     },
     {
-      port: process.env.PORT_IBC,
-      labels: ['ibc'],
+      port: process.env.PORT_GEOLINK,
+      labels: ['geolink'],
     },
   ],
   registrations: [
@@ -16,25 +16,25 @@ module.exports = {
     {
       plugin: 'inert',
       options: {
-        select: ['admin', 'wantit', 'ibc'],
+        select: ['admin', 'geolink'],
       },
     },
     {
       plugin: 'vision',
       options: {
-        select: ['admin', 'wantit', 'ibc'],
+        select: ['admin', 'geolink'],
       },
     },
     {
       plugin: 'hapi-auth-cookie',
       options: {
-        select: ['admin', 'wantit', 'ibc'],
+        select: ['admin', 'geolink'],
       },
     },
     {
       plugin: 'hapi-auth-jwt2',
       options: {
-        select: ['admin', 'wantit', 'ibc'],
+        select: ['admin', 'geolink'],
       },
     },
 
@@ -42,19 +42,19 @@ module.exports = {
     {
       plugin: './good',
       options: {
-        select: ['admin', 'wantit', 'ibc'],
+        select: ['admin', 'geolink'],
       },
     },
     {
       plugin: './database',
       options: {
-        select: ['admin', 'wantit', 'ibc'],
+        select: ['admin', 'geolink'],
       },
     },
     // {
     //   plugin: './tls',
     //   options: {
-    //     select: ['admin', 'wantit', 'ibc'],
+    //     select: ['admin', 'geolink'],
     //   },
     // },
     // {
@@ -72,9 +72,9 @@ module.exports = {
       },
     },
     {
-      plugin: '../../hapi-ibc/index',
+      plugin: '../../hapi-geolink/index',
       options: {
-        select: ['ibc'],
+        select: ['geolink'],
       },
     },
   ],

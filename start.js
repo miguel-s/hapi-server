@@ -16,8 +16,8 @@ Server.init(internals.manifest, internals.composeOptions, (err, server) => {
   server.app.settings = internals.settings;
 
   const admin = server.select('admin');
-  const ibc = server.select('ibc');
+  const geolink = server.select('geolink');
 
   console.log(`Admin connection started at: ${admin.info.uri}`);
-  console.log(`Ibc connection started at: ${ibc.info.uri}`);
+  console.log(`Geolink connection started at: ${geolink.info.uri}`);
 });
