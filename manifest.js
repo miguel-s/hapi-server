@@ -10,31 +10,35 @@ module.exports = {
       port: process.env.PORT_GEOLINK,
       labels: ['geolink'],
     },
+    {
+      port: process.env.PORT_SPURCORR,
+      labels: ['spurcorr'],
+    },
   ],
   registrations: [
     // Basic plugins
     {
       plugin: 'inert',
       options: {
-        select: ['admin', 'geolink'],
+        select: ['admin', 'geolink', 'spurcorr'],
       },
     },
     {
       plugin: 'vision',
       options: {
-        select: ['admin', 'geolink'],
+        select: ['admin', 'geolink', 'spurcorr'],
       },
     },
     {
       plugin: 'hapi-auth-cookie',
       options: {
-        select: ['admin', 'geolink'],
+        select: ['admin', 'geolink', 'spurcorr'],
       },
     },
     {
       plugin: 'hapi-auth-jwt2',
       options: {
-        select: ['admin', 'geolink'],
+        select: ['admin', 'geolink', 'spurcorr'],
       },
     },
 
@@ -42,19 +46,19 @@ module.exports = {
     {
       plugin: './good',
       options: {
-        select: ['admin', 'geolink'],
+        select: ['admin', 'geolink', 'spurcorr'],
       },
     },
     {
       plugin: './database',
       options: {
-        select: ['admin', 'geolink'],
+        select: ['admin', 'geolink', 'spurcorr'],
       },
     },
     // {
     //   plugin: './tls',
     //   options: {
-    //     select: ['admin', 'geolink'],
+    //     select: ['admin', 'geolink', 'spurcorr'],
     //   },
     // },
     // {
@@ -75,6 +79,12 @@ module.exports = {
       plugin: '../../hapi-geolink/index',
       options: {
         select: ['geolink'],
+      },
+    },
+    {
+      plugin: '../../hapi-spurcorr/index',
+      options: {
+        select: ['spurcorr'],
       },
     },
   ],

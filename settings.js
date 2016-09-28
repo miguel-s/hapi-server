@@ -7,4 +7,7 @@ module.exports = {
   geolink: {
     allowSignup: false,
   },
+  spurcorr: {
+    allowSignup: false,
+  },
 };
