@@ -1,5 +1,7 @@
 'use strict';
 
+const fs = require('fs')
+
 const dotenv = require('dotenv').config();
 const pmx = require('pmx').init({ http: true });
 const Hoek = require('hoek');
@@ -15,9 +17,9 @@ Server.init(internals.manifest, internals.composeOptions, (err, server) => {
 
   server.app.settings = internals.settings;
 
-  const admin = server.select('admin');
-  const geolink = server.select('geolink');
-
-  console.log(`Admin connection started at: ${admin.info.uri}`);
-  console.log(`Geolink connection started at: ${geolink.info.uri}`);
+  server.connections.forEach((c) => {
+    const labels = c.settings.labels.join(', ');
+    const port = c.settings.port;
+    console.log(`[${labels}] connection started at port [${port}]`);
+  });
 });
