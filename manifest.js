@@ -38,7 +38,7 @@ module.exports = {
     {
       plugin: 'hapi-auth-jwt2',
       options: {
-        select: ['admin', 'geolink', 'spurcorr'],
+        select: ['admin', 'geolink'],
       },
     },
 
