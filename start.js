@@ -10,7 +10,6 @@ const Server = require('./server.js');
 const internals = {};
 internals.manifest = require('./manifest');
 internals.composeOptions = { relativeTo: `${__dirname}/plugins` };
-internals.settings = require('./settings.js');
 
 Server.init(internals.manifest, internals.composeOptions, (err, server) => {
   Hoek.assert(!err, err);
