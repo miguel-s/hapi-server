@@ -55,18 +55,6 @@ module.exports = {
         select: ['admin', 'geolink', 'spurcorr'],
       },
     },
-    // {
-    //   plugin: './tls',
-    //   options: {
-    //     select: ['admin', 'geolink', 'spurcorr'],
-    //   },
-    // },
-    // {
-    //   plugin: './lout',
-    //   options: {
-    //     select: ['server'],
-    //   },
-    // },
 
     // Modules
     {
