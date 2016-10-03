@@ -3,15 +3,15 @@
 module.exports = {
   connections: [
     {
-      port: process.env.PORT_ADMIN,
+      port: process.env.ADMIN_PORT,
       labels: ['admin'],
     },
     {
-      port: process.env.PORT_GEOLINK,
+      port: process.env.GEOLINK_PORT,
       labels: ['geolink'],
     },
     {
-      port: process.env.PORT_SPURCORR,
+      port: process.env.SPURCORR_PORT,
       labels: ['spurcorr'],
     },
   ],
