@@ -14,25 +14,29 @@ module.exports = {
       port: process.env.SPURCORR_PORT,
       labels: ['spurcorr'],
     },
+    {
+      port: process.env.DASHBOARDS_PORT,
+      labels: ['dashboards'],
+    },
   ],
   registrations: [
     // Basic plugins
     {
       plugin: 'inert',
       options: {
-        select: ['admin', 'geolink', 'spurcorr'],
+        select: ['admin', 'geolink', 'spurcorr', 'dashboards'],
       },
     },
     {
       plugin: 'vision',
       options: {
-        select: ['admin', 'geolink', 'spurcorr'],
+        select: ['admin', 'geolink', 'spurcorr', 'dashboards'],
       },
     },
     {
       plugin: 'hapi-auth-cookie',
       options: {
-        select: ['admin', 'geolink', 'spurcorr'],
+        select: ['admin', 'geolink', 'spurcorr', 'dashboards'],
       },
     },
     {
@@ -46,13 +50,13 @@ module.exports = {
     {
       plugin: './good',
       options: {
-        select: ['admin', 'geolink', 'spurcorr'],
+        select: ['admin', 'geolink', 'spurcorr', 'dashboards'],
       },
     },
     {
       plugin: './database',
       options: {
-        select: ['admin', 'geolink', 'spurcorr'],
+        select: ['admin', 'geolink', 'spurcorr', 'dashboards'],
       },
     },
 
@@ -73,6 +77,12 @@ module.exports = {
       plugin: '../../hapi-spurcorr/index',
       options: {
         select: ['spurcorr'],
+      },
+    },
+    {
+      plugin: '../../hapi-dashboards/index',
+      options: {
+        select: ['dashboards'],
       },
     },
   ],
