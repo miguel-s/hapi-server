@@ -5,18 +5,30 @@ module.exports = {
     {
       port: process.env.ADMIN_PORT,
       labels: ['admin'],
+      router: {
+        stripTrailingSlash: true,
+      },
     },
     {
       port: process.env.GEOLINK_PORT,
       labels: ['geolink'],
+      router: {
+        stripTrailingSlash: true,
+      },
     },
     {
       port: process.env.SPURCORR_PORT,
       labels: ['spurcorr'],
+      router: {
+        stripTrailingSlash: true,
+      },
     },
     {
       port: process.env.DASHBOARDS_PORT,
       labels: ['dashboards'],
+      router: {
+        stripTrailingSlash: true,
+      },
     },
   ],
   registrations: [
